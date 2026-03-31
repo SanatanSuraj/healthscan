@@ -1,0 +1,36 @@
+{
+  "expo": {
+    "name": "HealthScan",
+    "slug": "healthscan",
+    "version": "1.0.0",
+    "scheme": "healthscan",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "userInterfaceStyle": "light",
+    "splash": {
+      "image": "./assets/splash-icon.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#F7F9FC"
+    },
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "com.healthscan.app"
+    },
+    "android": {
+      "usesCleartextTraffic": true,
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/adaptive-icon.png",
+        "backgroundColor": "#F7F9FC"
+      },
+      "package": "com.healthscan.app"
+    },
+    "web": {
+      "favicon": "./assets/favicon.png",
+      "bundler": "metro"
+    },
+    "plugins": ["expo-router"],
+    "extra": {
+      "apiUrl": "http://localhost:3000"
+    }
+  }
+}

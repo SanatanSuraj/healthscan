@@ -1,0 +1,30 @@
+{
+  "name": "healthscan",
+  "private": true,
+  "scripts": {
+    "dev": "turbo run dev --parallel",
+    "dev:api": "pnpm --filter api start:dev",
+    "dev:mobile": "pnpm --filter mobile start",
+    "build": "turbo run build",
+    "lint": "turbo run lint",
+    "test": "turbo run test"
+  },
+  "devDependencies": {
+    "turbo": "^2.3.3"
+  },
+  "packageManager": "pnpm@9.14.2",
+  "engines": {
+    "node": ">=20"
+  },
+  "pnpm": {
+    "overrides": {
+      "react": "19.1.0",
+      "react-dom": "19.1.0",
+      "react-native": "0.81.5"
+    },
+    "patchedDependencies": {
+      "@expo/metro-runtime@4.0.1": "patches/@expo+metro-runtime@4.0.1.patch",
+      "expo-router@4.0.22": "patches/expo-router@4.0.22.patch"
+    }
+  }
+}

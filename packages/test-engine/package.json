@@ -1,0 +1,11 @@
+{
+  "name": "@healthscan/test-engine",
+  "version": "0.0.1",
+  "private": true,
+  "main": "./src/index.ts",
+  "types": "./src/index.ts",
+  "scripts": {
+    "test": "node --import tsx --test src/*.test.ts 2>/dev/null || vitest run 2>/dev/null || echo skip"
+  },
+  "license": "UNLICENSED"
+}

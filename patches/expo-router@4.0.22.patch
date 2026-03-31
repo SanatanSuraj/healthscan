@@ -1,0 +1,13 @@
+diff --git a/build/getDevServer/index.native.js b/build/getDevServer/index.native.js
+--- a/build/getDevServer/index.native.js
++++ b/build/getDevServer/index.native.js
+@@ -1,5 +1,6 @@
+ "use strict";
+ Object.defineProperty(exports, "__esModule", { value: true });
+ exports.getDevServer = void 0;
+-exports.getDevServer = require('react-native/Libraries/Core/Devtools/getDevServer');
+-//# sourceMappingURL=index.native.js.map
+\ No newline at end of file
++const _mod = require('react-native/Libraries/Core/Devtools/getDevServer');
++exports.getDevServer = _mod.default ?? _mod;
++//# sourceMappingURL=index.native.js.map

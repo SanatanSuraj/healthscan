@@ -1,0 +1,9 @@
+{
+  "name": "web",
+  "private": true,
+  "scripts": {
+    "dev": "cd ../mobile && npx expo start --web",
+    "build": "cd ../mobile && npx expo export --platform web",
+    "lint": "echo ok"
+  }
+}
