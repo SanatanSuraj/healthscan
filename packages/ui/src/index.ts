@@ -1,4 +1,6 @@
 export { theme, type Theme } from './theme';
+export { eyeTheme, type EyeTheme } from './eyeTheme';
+export * from './eye';
 export { Button } from './Button';
 export { Card } from './Card';
 export { HealthGauge } from './Gauge';

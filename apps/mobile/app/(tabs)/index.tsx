@@ -2,114 +2,94 @@ import React from 'react';
 import { View, Text, StyleSheet, ScrollView, Pressable } from 'react-native';
 import { router } from 'expo-router';
 import { useQuery } from '@tanstack/react-query';
-import {
-  theme,
-  HealthGauge,
-  Card,
-  Button,
-  MedicalDisclaimer,
-} from '@healthscan/ui';
+import { theme, MedicalDisclaimer } from '@healthscan/ui';
 import { useAuth } from '@/context/auth';
+import { eyeTheme } from '@healthscan/ui';
 
 export default function HomeScreen() {
   const { api } = useAuth();
   const q = useQuery({
     queryKey: ['scores', 'latest'],
-    queryFn: () => api.scores.latest() as Promise<{
-      unified?: number;
-      mind?: number;
-      vision?: number;
-      risk?: string;
-    } | null>,
+    queryFn: () => api.scores.latest() as Promise<Record<string, unknown> | null>,
   });
 
   return (
     <ScrollView style={styles.screen} contentContainerStyle={styles.wrap}>
-      <Text style={styles.greet}>Welcome back</Text>
-      <Text style={styles.date}>{new Date().toLocaleDateString()}</Text>
-      <Card style={{ marginTop: theme.space.lg }}>
-        <HealthGauge value={q.data?.unified ?? null} />
-        {q.isError ? (
-          <Text style={styles.warn}>Connect to the API to load scores.</Text>
-        ) : null}
-      </Card>
-      <View style={styles.row}>
-        <SummaryCard
-          title="Mind"
-          value={q.data?.mind}
-          onPress={() => router.push('/mind')}
-          style={{ marginRight: theme.space.md }}
-        />
-        <SummaryCard
-          title="Vision"
-          value={q.data?.vision}
-          onPress={() => router.push('/eye')}
-        />
+      <View style={styles.hero}>
+        <View style={styles.logo}>
+          <Text style={styles.logoEye}>👁</Text>
+        </View>
+        <View style={{ flex: 1 }}>
+          <Text style={styles.appName}>MobiLab EyeCare</Text>
+          <Text style={styles.tag}>Primary Eye Screening & Triage Platform</Text>
+        </View>
       </View>
-      <Button title="Quick test — Mind" onPress={() => router.push('/mind')} />
-      <View style={{ height: theme.space.sm }} />
-      <Button
-        title="Quick test — Vision"
-        variant="secondary"
-        onPress={() => router.push('/eye')}
-      />
+
+      <Pressable
+        style={styles.primaryCta}
+        onPress={() => router.push('/screening')}
+      >
+        <Text style={styles.primaryCtaText}>Open Vision Screening</Text>
+      </Pressable>
+
+      <Text style={styles.sectionTitle}>Overview</Text>
+      <Text style={styles.meta}>
+        {q.isError
+          ? 'Connect to the API for historical scores.'
+          : 'Use the screening module for the full 6-step protocol.'}
+      </Text>
+
       <MedicalDisclaimer />
     </ScrollView>
-  );
-}
-
-function SummaryCard({
-  title,
-  value,
-  onPress,
-  style,
-}: {
-  title: string;
-  value?: number;
-  onPress: () => void;
-  style?: object;
-}) {
-  return (
-    <Pressable style={[styles.mini, style]} onPress={onPress} accessibilityRole="button">
-      <Text style={styles.miniTitle}>{title}</Text>
-      <Text style={styles.miniVal}>{value == null ? '—' : value}</Text>
-      <Text style={styles.miniHint}>Last module score</Text>
-    </Pressable>
   );
 }
 
 const styles = StyleSheet.create({
   screen: { flex: 1, backgroundColor: theme.colors.bg },
   wrap: { padding: theme.space.lg, paddingBottom: 48 },
-  greet: {
-    fontSize: theme.type.xl,
+  hero: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginBottom: theme.space.lg,
+    gap: 14,
+  },
+  logo: {
+    width: 52,
+    height: 52,
+    borderRadius: 12,
+    backgroundColor: eyeTheme.primary,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  logoEye: { fontSize: 26 },
+  appName: {
+    fontSize: 20,
+    fontWeight: '800',
+    color: eyeTheme.primary,
+  },
+  tag: {
+    fontSize: 13,
+    color: eyeTheme.textMuted,
+    marginTop: 4,
+    lineHeight: 18,
+  },
+  primaryCta: {
+    backgroundColor: eyeTheme.primary,
+    borderRadius: 14,
+    paddingVertical: 16,
+    alignItems: 'center',
+    marginBottom: theme.space.lg,
+  },
+  primaryCtaText: { color: '#fff', fontSize: 17, fontWeight: '700' },
+  sectionTitle: {
+    fontSize: theme.type.lg,
     fontWeight: '700',
     color: theme.colors.text,
+    marginBottom: 8,
   },
-  date: { color: theme.colors.textSecondary, marginTop: 4 },
-  row: {
-    flexDirection: 'row',
-    marginVertical: theme.space.lg,
-  },
-  mini: {
-    flex: 1,
-    backgroundColor: theme.colors.surface,
-    borderRadius: theme.radius.md,
-    padding: theme.space.md,
-    borderWidth: 1,
-    borderColor: theme.colors.border,
-  },
-  miniTitle: { fontWeight: '600', color: theme.colors.text },
-  miniVal: {
-    fontSize: theme.type.xl,
-    fontWeight: '700',
-    color: theme.colors.primary,
-    marginTop: theme.space.sm,
-  },
-  miniHint: {
-    fontSize: theme.type.xs,
+  meta: {
     color: theme.colors.textSecondary,
-    marginTop: 4,
+    lineHeight: 22,
+    marginBottom: theme.space.lg,
   },
-  warn: { color: theme.colors.riskYellow, marginTop: theme.space.sm },
 });
