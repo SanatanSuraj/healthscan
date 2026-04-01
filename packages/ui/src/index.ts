@@ -1,6 +1,8 @@
 export { theme, type Theme } from './theme';
 export { eyeTheme, type EyeTheme } from './eyeTheme';
+export { mindTheme, type MindTheme } from './mindTheme';
 export * from './eye';
+export * from './mind';
 export { Button } from './Button';
 export { Card } from './Card';
 export { HealthGauge } from './Gauge';
