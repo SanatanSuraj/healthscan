@@ -22,7 +22,6 @@ import { ScoringService } from '../scoring/scoring.service';
 import { ScoresService } from '../scores/scores.service';
 import { NotificationsService } from '../notifications/notifications.service';
 import { EventsGateway } from '../websocket/events.gateway';
-import type { UserDocument } from '../users/schemas/user.schema';
 
 @Injectable()
 export class TestsService {
@@ -44,11 +43,6 @@ export class TestsService {
   async createSession(userId: string, dto: CreateSessionDto) {
     const user = await this.users.findById(userId);
     if (!user) throw new ForbiddenException();
-    if (user.isGuest && user.guestScreeningUsed) {
-      throw new ForbiddenException(
-        'Guest screening limit reached. Create an account to continue.',
-      );
-    }
 
     return this.sessionModel.create({
       userId: new mongoose.Types.ObjectId(userId),
@@ -120,11 +114,6 @@ export class TestsService {
     }
     if (session.module === 'eye' && !dto.eye) {
       throw new BadRequestException('eye payload required');
-    }
-
-    const user = await this.users.findById(userId) as UserDocument;
-    if (user.isGuest && user.guestScreeningUsed) {
-      throw new ForbiddenException('Guest screening already used');
     }
 
     const profile = await this.profiles.ensureProfile(userId);
@@ -199,8 +188,6 @@ export class TestsService {
     session.status = 'completed';
     session.submittedAt = new Date();
     await session.save();
-
-    if (user.isGuest) await this.users.markGuestUsed(userId);
 
     await this.scores.recomputeSnapshotFromResults(userId);
     await this.scores.evaluateDeclineAndMaybeNotify(userId, unified);

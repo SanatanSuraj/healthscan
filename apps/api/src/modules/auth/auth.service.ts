@@ -48,12 +48,6 @@ export class AuthService {
     return this.issueTokens(user);
   }
 
-  async guest() {
-    const user = await this.users.createGuestUser();
-    await this.profiles.ensureProfile(user._id.toString());
-    return this.issueTokens(user);
-  }
-
   async refresh(refreshToken: string) {
     try {
       const payload = await this.jwt.verifyAsync<{

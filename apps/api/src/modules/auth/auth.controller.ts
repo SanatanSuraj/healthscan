@@ -24,11 +24,6 @@ export class AuthController {
     return this.auth.login(dto);
   }
 
-  @Post('guest')
-  guest() {
-    return this.auth.guest();
-  }
-
   @Post('refresh')
   refresh(@Body() dto: RefreshDto) {
     return this.auth.refresh(dto.refreshToken);

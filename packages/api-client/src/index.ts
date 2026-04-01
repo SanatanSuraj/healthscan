@@ -120,12 +120,6 @@ export function createHealthScanApi(
           method: 'POST',
           body: JSON.stringify({ email, password }),
         }),
-      guest: () =>
-        request<{
-          accessToken: string;
-          refreshToken: string;
-          userId: string;
-        }>('/v1/auth/guest', { method: 'POST' }),
     },
     me: {
       getProfile: () => request<unknown>('/v1/me/profile'),

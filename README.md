@@ -43,7 +43,7 @@ Metro is telling the device to load JS from your computer’s LAN IP on port **8
    Scan the **new** QR in Expo Go (URL will look like `exp://u.expo.dev/...`, not `192.168.x.x`).
 4. After your machine’s IP changes, restart with cache clear: `pnpm run start:clear`.
 
-**API URL (fixes “Network error” / guest login on devices)**
+**API URL (fixes “Network error” on devices)**
 
 Default is `http://localhost:3000` in `app.json`. On **native**, that URL is rewritten so the app does not talk to the phone’s own loopback:
 

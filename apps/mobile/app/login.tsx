@@ -38,24 +38,6 @@ export default function LoginScreen() {
     }
   }
 
-  async function onGuest() {
-    setErr('');
-    setLoading(true);
-    try {
-      const res = await api.auth.guest();
-      await setTokens({
-        accessToken: res.accessToken,
-        refreshToken: res.refreshToken,
-        userId: res.userId,
-      });
-      router.replace('/');
-    } catch (e: unknown) {
-      setErr(e instanceof Error ? e.message : 'Guest start failed');
-    } finally {
-      setLoading(false);
-    }
-  }
-
   return (
     <KeyboardAvoidingView
       style={{ flex: 1 }}
@@ -98,8 +80,6 @@ export default function LoginScreen() {
         />
         <View style={{ height: theme.space.md }} />
         <Button title="Create account" variant="ghost" onPress={() => router.push('/register')} />
-        <View style={{ height: theme.space.md }} />
-        <Button title="Continue as guest" variant="secondary" onPress={onGuest} />
         <MedicalDisclaimer />
       </ScrollView>
     </KeyboardAvoidingView>

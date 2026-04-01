@@ -49,14 +49,6 @@ export class UsersService {
     });
   }
 
-  async createGuestUser(): Promise<UserDocument> {
-    return this.userModel.create({
-      roles: ['user'],
-      isGuest: true,
-      guestScreeningUsed: false,
-    });
-  }
-
   async validatePassword(
     user: UserDocument,
     password: string,
@@ -69,13 +61,6 @@ export class UsersService {
     await this.userModel.updateOne(
       { _id: userId },
       { $inc: { refreshTokenVersion: 1 } },
-    );
-  }
-
-  async markGuestUsed(userId: string): Promise<void> {
-    await this.userModel.updateOne(
-      { _id: userId },
-      { guestScreeningUsed: true },
     );
   }
 
