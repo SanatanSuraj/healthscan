@@ -11,6 +11,7 @@ import {
 } from '@healthscan/ui';
 import { GAD7_ITEMS, GAD7_LIKERT_OPTIONS } from '@/lib/mindScreeningContent';
 import { useMindScreeningStore } from '@/lib/mindScreeningStore';
+import { goBackOrReplace } from '@/lib/navigation';
 
 export default function Gad7Screen() {
   const setGad7Scores = useMindScreeningStore((s) => s.setGad7Scores);
@@ -21,7 +22,7 @@ export default function Gad7Screen() {
   const currentStep = index + 1;
 
   const onBack = useCallback(() => {
-    if (index <= 0) router.back();
+    if (index <= 0) goBackOrReplace('/mind/quick-health');
     else setAnswers((a) => a.slice(0, -1));
   }, [index]);
 

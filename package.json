@@ -5,6 +5,7 @@
     "dev": "turbo run dev --parallel",
     "dev:api": "pnpm --filter api start:dev",
     "dev:mobile": "pnpm --filter mobile start",
+    "dev:mobile:tunnel": "pnpm --filter mobile run start:tunnel",
     "build": "turbo run build",
     "lint": "turbo run lint",
     "test": "turbo run test"

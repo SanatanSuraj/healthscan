@@ -11,6 +11,7 @@ import {
 } from '@healthscan/ui';
 import { PSS10_ITEMS, PSS10_LIKERT_OPTIONS } from '@/lib/mindScreeningContent';
 import { useMindScreeningStore } from '@/lib/mindScreeningStore';
+import { goBackOrReplace } from '@/lib/navigation';
 
 export default function Pss10Screen() {
   const setPss10RawScores = useMindScreeningStore((s) => s.setPss10RawScores);
@@ -21,7 +22,7 @@ export default function Pss10Screen() {
   const currentStep = index + 1;
 
   const onBack = useCallback(() => {
-    if (index <= 0) router.back();
+    if (index <= 0) goBackOrReplace('/mind/quick-health');
     else setAnswers((a) => a.slice(0, -1));
   }, [index]);
 

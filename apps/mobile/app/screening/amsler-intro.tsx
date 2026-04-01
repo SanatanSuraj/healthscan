@@ -7,6 +7,7 @@ import {
   EyeScreenHeader,
   EyeModuleIntroLayout,
 } from '@healthscan/ui';
+import { goBackOrReplace } from '@/lib/navigation';
 
 export default function AmslerIntro() {
   return (
@@ -16,7 +17,7 @@ export default function AmslerIntro() {
           <EyeScreenHeader
             title="Amsler Grid"
             progress="5/6"
-            onBack={() => router.replace('/screening/contrast-test')}
+            onBack={() => goBackOrReplace('/screening/contrast-test')}
           />
         }
         icon={

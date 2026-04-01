@@ -2,6 +2,7 @@ import React from 'react';
 import { View, Text, StyleSheet, ScrollView } from 'react-native';
 import { router } from 'expo-router';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import { goBackOrReplace } from '@/lib/navigation';
 import {
   mindTheme,
   MindScreenBackdrop,
@@ -19,7 +20,7 @@ export default function MindQuickHealthHub() {
           keyboardShouldPersistTaps="handled"
           showsVerticalScrollIndicator={false}
         >
-          <MindBackLink onPress={() => router.back()} />
+          <MindBackLink onPress={() => goBackOrReplace('/mind')} />
           <Text style={styles.ico}>🩺</Text>
           <Text style={styles.h}>Quick Health Check</Text>
           <Text style={styles.sub}>Validated screening tools · 2–3 min each</Text>

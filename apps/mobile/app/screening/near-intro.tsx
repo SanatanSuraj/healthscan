@@ -7,6 +7,7 @@ import {
   EyeScreenHeader,
   EyeModuleIntroLayout,
 } from '@healthscan/ui';
+import { goBackOrReplace } from '@/lib/navigation';
 
 export default function NearVisionIntro() {
   return (
@@ -16,7 +17,7 @@ export default function NearVisionIntro() {
           <EyeScreenHeader
             title="Near Vision"
             progress="2/6"
-            onBack={() => router.replace('/screening/visual-acuity')}
+            onBack={() => goBackOrReplace('/screening/visual-acuity')}
           />
         }
         icon={<Text style={{ fontSize: 44 }}>📖</Text>}

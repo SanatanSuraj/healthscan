@@ -13,6 +13,7 @@ import {
 import { useEyeScreeningStore, type EyeSide } from '@/lib/eyeScreeningStore';
 import { TRIALS_PER_EYE } from '@/lib/eyeScreeningContent';
 import { visualAcuityMetrics } from '@/lib/eyeScreeningScoring';
+import { goBackOrReplace } from '@/lib/navigation';
 
 const ROTATIONS = [0, 90, 180, 270] as const;
 const ROT_TO_ANS: Record<
@@ -86,7 +87,7 @@ export default function VisualAcuityScreen() {
       <EyeScreenHeader
         title={title}
         progress={`${trialIdx}/${TRIALS_PER_EYE}`}
-        onBack={() => router.replace('/screening/patient')}
+        onBack={() => goBackOrReplace('/screening/patient')}
       />
       <View style={styles.badgeWrap}>
         <EyeMetricPill>

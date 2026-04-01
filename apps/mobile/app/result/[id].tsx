@@ -1,5 +1,6 @@
 import React from 'react';
 import { View, Text, StyleSheet, ScrollView } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 import { useLocalSearchParams, router } from 'expo-router';
 import { useQuery } from '@tanstack/react-query';
 import {
@@ -11,6 +12,7 @@ import {
   MedicalDisclaimer,
 } from '@healthscan/ui';
 import { useAuth } from '@/context/auth';
+import { AppBackLink } from '@/components/AppBackLink';
 
 export default function ResultScreen() {
   const { id } = useLocalSearchParams<{ id: string }>();
@@ -28,7 +30,9 @@ export default function ResultScreen() {
   const risk = (q.data?.risk ?? 'green') as RiskLevel;
 
   return (
-    <ScrollView style={styles.bg} contentContainerStyle={styles.wrap}>
+    <SafeAreaView style={styles.bg} edges={['top', 'bottom']}>
+      <ScrollView contentContainerStyle={styles.wrap}>
+      <AppBackLink fallbackHref="/(tabs)" />
       <Text style={styles.h}>Your screening snapshot</Text>
       <HealthGauge value={q.data?.unifiedScore ?? null} />
       <RiskPill level={risk} style={{ marginTop: theme.space.md }} />
@@ -47,13 +51,14 @@ export default function ResultScreen() {
       ) : null}
       <Button title="Back to home" onPress={() => router.replace('/(tabs)')} />
       <MedicalDisclaimer />
-    </ScrollView>
+      </ScrollView>
+    </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
   bg: { flex: 1, backgroundColor: theme.colors.bg },
-  wrap: { padding: theme.space.lg, paddingBottom: 40 },
+  wrap: { padding: theme.space.lg, paddingBottom: 40, flexGrow: 1 },
   h: { fontSize: theme.type.xl, fontWeight: '700', color: theme.colors.text },
   p: { marginTop: theme.space.md, color: theme.colors.textSecondary, lineHeight: 22 },
   list: { marginVertical: theme.space.lg },

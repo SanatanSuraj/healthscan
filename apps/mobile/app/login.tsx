@@ -10,6 +10,7 @@ import {
 } from 'react-native';
 import { router } from 'expo-router';
 import { Button, theme, MedicalDisclaimer } from '@healthscan/ui';
+import { webScrollContent } from '@/lib/webLayout';
 import { useAuth } from '@/context/auth';
 
 export default function LoginScreen() {
@@ -61,7 +62,11 @@ export default function LoginScreen() {
       behavior={Platform.OS === 'ios' ? 'padding' : undefined}
     >
       <ScrollView
-        contentContainerStyle={styles.wrap}
+        contentContainerStyle={
+          Platform.OS === 'web'
+            ? [webScrollContent.centeredColumn, styles.wrapWeb]
+            : styles.wrap
+        }
         keyboardShouldPersistTaps="handled"
       >
         <Text style={styles.title}>HealthScan</Text>
@@ -107,6 +112,11 @@ const styles = StyleSheet.create({
     paddingTop: 48,
     backgroundColor: theme.colors.bg,
     flexGrow: 1,
+  },
+  wrapWeb: {
+    flexGrow: 1,
+    paddingTop: 48,
+    backgroundColor: 'transparent',
   },
   title: {
     fontSize: theme.type.xl,

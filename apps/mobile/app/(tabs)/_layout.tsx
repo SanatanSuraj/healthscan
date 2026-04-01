@@ -1,7 +1,8 @@
 import React from 'react';
 import { Tabs } from 'expo-router';
 import { theme } from '@healthscan/ui';
-import { Text } from 'react-native';
+import { WEB_SHELL_MAX_WIDTH } from '@/lib/webLayout';
+import { Text, Platform } from 'react-native';
 
 function TabLabel({ name, focused }: { name: string; focused: boolean }) {
   return (
@@ -25,6 +26,16 @@ export default function TabsLayout() {
         tabBarStyle: {
           backgroundColor: theme.colors.surface,
           borderTopColor: theme.colors.border,
+          ...(Platform.OS === 'web'
+            ? {
+                maxWidth: WEB_SHELL_MAX_WIDTH,
+                alignSelf: 'center',
+                width: '100%',
+                paddingHorizontal: 12,
+                paddingTop: 4,
+                paddingBottom: 10,
+              }
+            : {}),
         },
         tabBarActiveTintColor: theme.colors.primary,
       }}

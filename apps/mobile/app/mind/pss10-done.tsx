@@ -11,11 +11,13 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import {
   mindTheme,
   MindScreenBackdrop,
+  MindBackLink,
   MindAudioButton,
   MindPurpleButton,
   mindTextNoSelectWeb,
   mindPressableWeb,
 } from '@healthscan/ui';
+import { goBackOrReplace } from '@/lib/navigation';
 import { PSS10_ITEMS, pss10StressLabel, pss10TotalFromRaw } from '@/lib/mindScreeningContent';
 import { useMindScreeningStore } from '@/lib/mindScreeningStore';
 
@@ -41,6 +43,7 @@ export default function Pss10DoneScreen() {
           contentContainerStyle={styles.scroll}
           showsVerticalScrollIndicator={false}
         >
+          <MindBackLink onPress={() => goBackOrReplace('/mind')} />
           <Text style={styles.bolt} accessibilityLabel="Complete">
             ⚡
           </Text>

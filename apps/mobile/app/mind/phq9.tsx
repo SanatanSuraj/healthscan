@@ -11,6 +11,7 @@ import {
 } from '@healthscan/ui';
 import { PHQ9_ITEMS, PHQ9_LIKERT_OPTIONS } from '@/lib/mindScreeningContent';
 import { useMindScreeningStore } from '@/lib/mindScreeningStore';
+import { goBackOrReplace } from '@/lib/navigation';
 
 export default function Phq9Screen() {
   const setPhq9Scores = useMindScreeningStore((s) => s.setPhq9Scores);
@@ -21,7 +22,7 @@ export default function Phq9Screen() {
   const currentStep = index + 1;
 
   const onBack = useCallback(() => {
-    if (index <= 0) router.back();
+    if (index <= 0) goBackOrReplace('/mind/quick-health');
     else setAnswers((a) => a.slice(0, -1));
   }, [index]);
 

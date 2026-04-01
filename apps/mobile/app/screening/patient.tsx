@@ -15,6 +15,7 @@ import {
   useEyeScreeningStore,
   type HistoryField,
 } from '@/lib/eyeScreeningStore';
+import { goBackOrReplace } from '@/lib/navigation';
 
 const HISTORY_ROWS: { key: HistoryField; label: string }[] = [
   { key: 'diabetes', label: 'Diabetes History' },
@@ -48,7 +49,10 @@ export default function PatientDetailsScreen() {
 
   return (
     <SafeAreaView style={styles.safe} edges={['top', 'bottom']}>
-      <EyeScreenHeader title="Patient Details" onBack={() => router.back()} />
+      <EyeScreenHeader
+        title="Patient Details"
+        onBack={() => goBackOrReplace('/screening')}
+      />
       <ScrollView
         contentContainerStyle={styles.body}
         keyboardShouldPersistTaps="handled"

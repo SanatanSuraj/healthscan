@@ -1,12 +1,27 @@
 import React from 'react';
-import { View, Text, StyleSheet, ScrollView, Pressable } from 'react-native';
+import {
+  View,
+  Text,
+  StyleSheet,
+  ScrollView,
+  Pressable,
+  Platform,
+} from 'react-native';
 import { router } from 'expo-router';
 import { theme } from '@healthscan/ui';
 import { eyeTheme, mindTheme } from '@healthscan/ui';
+import { webScrollContent } from '@/lib/webLayout';
 
 export default function TestsHub() {
   return (
-    <ScrollView style={styles.bg} contentContainerStyle={styles.wrap}>
+    <ScrollView
+      style={styles.bg}
+      contentContainerStyle={
+        Platform.OS === 'web'
+          ? webScrollContent.centeredColumn
+          : styles.wrap
+      }
+    >
       <Text style={styles.h}>Screenings</Text>
       <Text style={styles.p}>
         The EyeCare protocol runs visual acuity, near vision, color plates,

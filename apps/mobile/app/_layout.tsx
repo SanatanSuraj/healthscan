@@ -3,6 +3,7 @@ import { Stack } from 'expo-router';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { AuthProvider } from '@/context/auth';
 import { useRealtimeAlerts } from '@/hooks/useRealtimeAlerts';
+import { WebViewportShell } from '@/lib/WebViewportShell';
 import { StatusBar } from 'expo-status-bar';
 
 const qc = new QueryClient();
@@ -17,13 +18,17 @@ export default function RootLayout() {
     <QueryClientProvider client={qc}>
       <AuthProvider>
         <RealtimeBridge />
-        <StatusBar style="dark" />
-        <Stack
-          screenOptions={{
-            headerStyle: { backgroundColor: '#F7F9FC' },
-            headerShadowVisible: false,
-          }}
-        />
+        <WebViewportShell>
+          <StatusBar style="dark" />
+          <Stack
+            screenOptions={{
+              headerShown: false,
+              contentStyle: { backgroundColor: '#F7F9FC' },
+              gestureEnabled: true,
+              fullScreenGestureEnabled: true,
+            }}
+          />
+        </WebViewportShell>
       </AuthProvider>
     </QueryClientProvider>
   );

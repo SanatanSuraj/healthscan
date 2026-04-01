@@ -1,18 +1,25 @@
 import React from 'react';
 import { Pressable, Text, StyleSheet } from 'react-native';
-import { mindTheme } from '../mindTheme';
-import { mindPressableWeb } from './mindPlatform';
+import type { Href } from 'expo-router';
+import { theme } from '@healthscan/ui';
+import { goBackOrReplace } from '@/lib/navigation';
 
-export function MindBackLink({ onPress }: { onPress: () => void }) {
+export function AppBackLink({
+  fallbackHref,
+  label = '← Back',
+}: {
+  fallbackHref: Href;
+  label?: string;
+}) {
   return (
     <Pressable
-      onPress={onPress}
+      onPress={() => goBackOrReplace(fallbackHref)}
       hitSlop={{ top: 14, bottom: 14, left: 10, right: 10 }}
-      style={[styles.row, mindPressableWeb]}
+      style={styles.row}
       accessibilityRole="button"
-      accessibilityLabel="Back"
+      accessibilityLabel="Go back"
     >
-      <Text style={styles.txt}>← Back</Text>
+      <Text style={styles.txt}>{label}</Text>
     </Pressable>
   );
 }
@@ -27,6 +34,6 @@ const styles = StyleSheet.create({
   txt: {
     fontSize: 16,
     fontWeight: '600',
-    color: mindTheme.backLink,
+    color: theme.colors.primary,
   },
 });

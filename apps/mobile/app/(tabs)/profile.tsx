@@ -1,8 +1,17 @@
 import React, { useState } from 'react';
-import { View, Text, StyleSheet, ScrollView, TextInput, Switch } from 'react-native';
+import {
+  View,
+  Text,
+  StyleSheet,
+  ScrollView,
+  TextInput,
+  Switch,
+  Platform,
+} from 'react-native';
 import { router } from 'expo-router';
 import { useQuery } from '@tanstack/react-query';
 import { Button, Card, theme, MedicalDisclaimer } from '@healthscan/ui';
+import { webScrollContent } from '@/lib/webLayout';
 import { useAuth } from '@/context/auth';
 
 export default function ProfileScreen() {
@@ -33,7 +42,14 @@ export default function ProfileScreen() {
   }
 
   return (
-    <ScrollView style={styles.bg} contentContainerStyle={styles.wrap}>
+    <ScrollView
+      style={styles.bg}
+      contentContainerStyle={
+        Platform.OS === 'web'
+          ? webScrollContent.centeredColumn
+          : styles.wrap
+      }
+    >
       <Text style={styles.h}>Profile</Text>
       <Card>
         <Text style={styles.label}>Age (optional)</Text>

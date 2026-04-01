@@ -9,6 +9,7 @@ import {
 } from '@healthscan/ui';
 import { COLOR_PLATES } from '@/lib/eyeScreeningContent';
 import { useEyeScreeningStore } from '@/lib/eyeScreeningStore';
+import { goBackOrReplace } from '@/lib/navigation';
 
 const { width: W } = Dimensions.get('window');
 const PLATE_SZ = Math.min(280, W - 48);
@@ -43,7 +44,7 @@ export default function ColorVisionTestScreen() {
       <EyeScreenHeader
         title="Color Vision"
         progress={progress}
-        onBack={() => router.replace('/screening/color-intro')}
+        onBack={() => goBackOrReplace('/screening/color-intro')}
       />
       <View style={styles.body}>
         <View style={[styles.plate, { width: PLATE_SZ, height: PLATE_SZ }]}>

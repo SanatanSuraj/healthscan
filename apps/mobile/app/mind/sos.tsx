@@ -1,6 +1,5 @@
 import React from 'react';
 import { StyleSheet, ScrollView } from 'react-native';
-import { router } from 'expo-router';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import {
   mindTheme,
@@ -8,6 +7,7 @@ import {
   MindBackLink,
   MindHelplineCard,
 } from '@healthscan/ui';
+import { goBackOrReplace } from '@/lib/navigation';
 
 export default function MindSosScreen() {
   return (
@@ -17,7 +17,7 @@ export default function MindSosScreen() {
           contentContainerStyle={styles.scroll}
           showsVerticalScrollIndicator={false}
         >
-          <MindBackLink onPress={() => router.back()} />
+          <MindBackLink onPress={() => goBackOrReplace('/mind')} />
           <MindHelplineCard />
         </ScrollView>
       </SafeAreaView>

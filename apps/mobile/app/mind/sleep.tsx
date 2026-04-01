@@ -22,6 +22,7 @@ import {
   type SleepQualityId,
 } from '@/lib/mindScreeningContent';
 import { useMindCareProgressStore } from '@/lib/mindCareProgressStore';
+import { goBackOrReplace } from '@/lib/navigation';
 
 const MIN_HOURS = 0;
 const MAX_HOURS = 14;
@@ -52,7 +53,7 @@ export default function SleepCheckinScreen() {
           showsVerticalScrollIndicator={false}
           keyboardShouldPersistTaps="handled"
         >
-          <MindBackLink onPress={() => router.back()} />
+          <MindBackLink onPress={() => goBackOrReplace('/mind')} />
 
           <View style={styles.header}>
             <Text style={styles.moon}>🌙</Text>

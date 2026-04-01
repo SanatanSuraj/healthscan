@@ -9,6 +9,7 @@ import {
   MindCompleteButton,
   mindTextNoSelectWeb,
 } from '@healthscan/ui';
+import { goBackOrReplace } from '@/lib/navigation';
 
 const cardShadow: ViewStyle = {
   shadowColor: '#000',
@@ -25,7 +26,7 @@ export default function MindMoodCompleteScreen() {
     <MindScreenBackdrop>
       <SafeAreaView style={styles.safe} edges={['top', 'bottom']}>
         <View style={styles.pad}>
-          <MindBackLink onPress={() => router.replace('/mind')} />
+          <MindBackLink onPress={() => goBackOrReplace('/mind')} />
           <View style={styles.center}>
             <View style={[styles.card, cardShadow]}>
               <Text style={styles.party}>🎉</Text>

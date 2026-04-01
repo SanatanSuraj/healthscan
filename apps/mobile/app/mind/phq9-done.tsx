@@ -13,6 +13,7 @@ import {
   mindTextNoSelectWeb,
 } from '@healthscan/ui';
 import { useMindScreeningStore } from '@/lib/mindScreeningStore';
+import { goBackOrReplace } from '@/lib/navigation';
 
 export default function Phq9DoneScreen() {
   const scores = useMindScreeningStore((s) => s.phq9Scores);
@@ -30,7 +31,7 @@ export default function Phq9DoneScreen() {
           contentContainerStyle={styles.scroll}
           showsVerticalScrollIndicator={false}
         >
-          <MindBackLink onPress={() => router.replace('/mind')} />
+          <MindBackLink onPress={() => goBackOrReplace('/mind')} />
           <Text style={styles.heart}>💚</Text>
           <Text style={[styles.h, mindTextNoSelectWeb]}>
             Thank you for being honest

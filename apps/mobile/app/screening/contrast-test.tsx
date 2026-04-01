@@ -12,6 +12,7 @@ import {
 } from '@healthscan/ui';
 import { CONTRAST_STEPS } from '@/lib/eyeScreeningContent';
 import { useEyeScreeningStore } from '@/lib/eyeScreeningStore';
+import { goBackOrReplace } from '@/lib/navigation';
 
 const ROTATIONS = [0, 90, 180, 270] as const;
 const ROT_TO_ANS: Record<(typeof ROTATIONS)[number], EyeDirection> = {
@@ -59,7 +60,7 @@ export default function ContrastTestScreen() {
       <EyeScreenHeader
         title="Contrast Sensitivity"
         progress={`${stepIdx}/${CONTRAST_STEPS}`}
-        onBack={() => router.replace('/screening/contrast-intro')}
+        onBack={() => goBackOrReplace('/screening/contrast-intro')}
       />
       <View style={styles.badgeWrap}>
         <EyeMetricPill>

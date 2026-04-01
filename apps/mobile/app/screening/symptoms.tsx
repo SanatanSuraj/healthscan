@@ -11,6 +11,7 @@ import {
 } from '@healthscan/ui';
 import { SYMPTOM_QUESTIONS } from '@/lib/eyeScreeningContent';
 import { useEyeScreeningStore } from '@/lib/eyeScreeningStore';
+import { goBackOrReplace } from '@/lib/navigation';
 
 export default function SymptomsScreen() {
   const symptoms = useEyeScreeningStore((s) => s.symptoms);
@@ -23,7 +24,7 @@ export default function SymptomsScreen() {
       <EyeScreenHeader
         title="Symptom Questionnaire"
         progress="6/6"
-        onBack={() => router.replace('/screening/amsler/os')}
+        onBack={() => goBackOrReplace('/screening/amsler/os')}
       />
       <ScrollView contentContainerStyle={styles.body}>
         {SYMPTOM_QUESTIONS.map((q, i) => (

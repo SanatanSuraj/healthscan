@@ -8,6 +8,7 @@ import {
   EyeModuleIntroLayout,
 } from '@healthscan/ui';
 import { useEyeScreeningStore } from '@/lib/eyeScreeningStore';
+import { goBackOrReplace } from '@/lib/navigation';
 
 export default function ColorVisionIntro() {
   const resetColor = () => {
@@ -23,7 +24,7 @@ export default function ColorVisionIntro() {
             progress="3/6"
             onBack={() => {
               resetColor();
-              router.replace('/screening/near-chart');
+              goBackOrReplace('/screening/near-chart');
             }}
           />
         }

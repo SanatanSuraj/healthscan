@@ -4,9 +4,11 @@ import { router } from 'expo-router';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import {
   eyeTheme,
+  EyeScreenHeader,
   EyeOutlineButton,
   EyePrimaryButton,
 } from '@healthscan/ui';
+import { goBackOrReplace } from '@/lib/navigation';
 import { useEyeScreeningStore } from '@/lib/eyeScreeningStore';
 import { COLOR_PLATES } from '@/lib/eyeScreeningContent';
 import {
@@ -71,9 +73,11 @@ export default function ScreeningResultsScreen() {
 
   return (
     <SafeAreaView style={styles.safe} edges={['top', 'bottom']}>
+      <EyeScreenHeader
+        title="Screening Results"
+        onBack={() => goBackOrReplace('/screening')}
+      />
       <ScrollView contentContainerStyle={styles.scroll}>
-        <Text style={styles.pageTitle}>Screening Results</Text>
-
         <View style={styles.patientCard}>
           <Text style={styles.patientLine}>
             {patient.fullName || 'Patient'} • {patient.age || '—'} yrs •{' '}
@@ -224,12 +228,6 @@ function Row({
 const styles = StyleSheet.create({
   safe: { flex: 1, backgroundColor: eyeTheme.bg },
   scroll: { padding: eyeTheme.screenPad, paddingBottom: 48 },
-  pageTitle: {
-    fontSize: 24,
-    fontWeight: '800',
-    color: eyeTheme.primary,
-    marginBottom: 16,
-  },
   patientCard: {
     backgroundColor: eyeTheme.surface,
     borderRadius: 16,

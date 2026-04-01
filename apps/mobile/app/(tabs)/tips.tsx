@@ -1,6 +1,7 @@
 import React from 'react';
-import { View, Text, StyleSheet, ScrollView } from 'react-native';
+import { View, Text, StyleSheet, ScrollView, Platform } from 'react-native';
 import { Card, theme } from '@healthscan/ui';
+import { webScrollContent } from '@/lib/webLayout';
 
 const TIPS = [
   {
@@ -19,7 +20,14 @@ const TIPS = [
 
 export default function TipsScreen() {
   return (
-    <ScrollView style={styles.bg} contentContainerStyle={styles.wrap}>
+    <ScrollView
+      style={styles.bg}
+      contentContainerStyle={
+        Platform.OS === 'web'
+          ? webScrollContent.centeredColumn
+          : styles.wrap
+      }
+    >
       <Text style={styles.h}>Education</Text>
       <Text style={styles.p}>General wellness tips — not personal medical advice.</Text>
       {TIPS.map((t) => (

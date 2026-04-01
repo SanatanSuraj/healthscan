@@ -10,6 +10,8 @@ import {
 } from 'react-native';
 import { router } from 'expo-router';
 import { Button, theme, MedicalDisclaimer } from '@healthscan/ui';
+import { AppBackLink } from '@/components/AppBackLink';
+import { webScrollContent } from '@/lib/webLayout';
 import { useAuth } from '@/context/auth';
 
 export default function RegisterScreen() {
@@ -42,7 +44,14 @@ export default function RegisterScreen() {
       style={{ flex: 1 }}
       behavior={Platform.OS === 'ios' ? 'padding' : undefined}
     >
-      <ScrollView contentContainerStyle={styles.wrap}>
+      <ScrollView
+        contentContainerStyle={
+          Platform.OS === 'web'
+            ? [webScrollContent.centeredColumn, styles.wrapWeb]
+            : styles.wrap
+        }
+      >
+        <AppBackLink fallbackHref="/login" />
         <Text style={styles.title}>Create your account</Text>
         <TextInput
           style={styles.input}
@@ -77,6 +86,11 @@ const styles = StyleSheet.create({
     paddingTop: 24,
     backgroundColor: theme.colors.bg,
     flexGrow: 1,
+  },
+  wrapWeb: {
+    flexGrow: 1,
+    paddingTop: 40,
+    backgroundColor: 'transparent',
   },
   title: {
     fontSize: theme.type.lg,

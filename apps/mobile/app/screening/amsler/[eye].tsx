@@ -15,6 +15,7 @@ import {
   eyePressableWeb,
 } from '@healthscan/ui';
 import { useEyeScreeningStore, type EyeSide } from '@/lib/eyeScreeningStore';
+import { goBackOrReplace } from '@/lib/navigation';
 
 const GRID_N = 20;
 const GRID_PX = 300;
@@ -57,7 +58,7 @@ export default function AmslerGridScreen() {
         title={title}
         progress="5/6"
         onBack={() =>
-          router.replace(
+          goBackOrReplace(
             side === 'os' ? '/screening/amsler/od' : '/screening/amsler-intro',
           )
         }

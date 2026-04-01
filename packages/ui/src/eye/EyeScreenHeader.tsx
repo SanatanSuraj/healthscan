@@ -14,6 +14,7 @@ export function EyeScreenHeader({ title, progress, onBack }: EyeScreenHeaderProp
     <View style={styles.row}>
       <Pressable
         onPress={onBack}
+        hitSlop={{ top: 12, bottom: 12, left: 8, right: 8 }}
         style={[styles.back, eyePressableWeb]}
         accessibilityRole="button"
         accessibilityLabel="Go back"

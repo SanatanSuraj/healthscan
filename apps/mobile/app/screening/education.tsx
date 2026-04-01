@@ -1,15 +1,15 @@
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
-import { router } from 'expo-router';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { eyeTheme, EyeScreenHeader } from '@healthscan/ui';
+import { goBackOrReplace } from '@/lib/navigation';
 
 export default function EyeEducationPlaceholder() {
   return (
     <SafeAreaView style={styles.safe} edges={['top', 'bottom']}>
       <EyeScreenHeader
         title="Eye Health Education"
-        onBack={() => router.back()}
+        onBack={() => goBackOrReplace('/screening/results')}
       />
       <View style={styles.body}>
         <Text style={styles.p}>

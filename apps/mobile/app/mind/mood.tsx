@@ -11,6 +11,7 @@ import {
   mindTextNoSelectWeb,
 } from '@healthscan/ui';
 import { MOOD_CHOICES } from '@/lib/mindScreeningContent';
+import { goBackOrReplace } from '@/lib/navigation';
 
 export default function MindMoodScreen() {
   return (
@@ -20,7 +21,7 @@ export default function MindMoodScreen() {
           contentContainerStyle={styles.scroll}
           showsVerticalScrollIndicator={false}
         >
-          <MindBackLink onPress={() => router.back()} />
+          <MindBackLink onPress={() => goBackOrReplace('/mind')} />
           <Text style={styles.heroEmoji}>😊</Text>
           <Text style={[styles.h, mindTextNoSelectWeb]}>How are you feeling?</Text>
           <View style={styles.audio}>

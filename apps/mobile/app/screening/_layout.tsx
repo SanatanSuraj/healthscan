@@ -9,6 +9,8 @@ export default function ScreeningLayout() {
         headerShown: false,
         contentStyle: { backgroundColor: eyeTheme.bg },
         animation: 'slide_from_right',
+        gestureEnabled: true,
+        fullScreenGestureEnabled: true,
       }}
     />
   );

@@ -12,6 +12,7 @@ import {
   EyeConsentCheckbox,
   EyePrimaryButton,
 } from '@healthscan/ui';
+import { AppBackLink } from '@/components/AppBackLink';
 import { useEyeScreeningStore } from '@/lib/eyeScreeningStore';
 
 const MODULES: { icon: string; label: string }[] = [
@@ -34,6 +35,7 @@ export default function ScreeningLanding() {
         contentContainerStyle={styles.scroll}
         keyboardShouldPersistTaps="handled"
       >
+        <AppBackLink fallbackHref="/(tabs)" />
         <EyeBrandHeader
           appName="MobiLab EyeCare"
           tagline="Primary Eye Screening & Triage Platform"

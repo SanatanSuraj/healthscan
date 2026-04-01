@@ -30,6 +30,19 @@ cd apps/mobile && pnpm install && npx expo start
 # press w for web, i / a for simulators
 ```
 
+**Expo Go on a phone: “Unknown error: The request timed out” (exp://192.168.x.x:8081)**
+
+Metro is telling the device to load JS from your computer’s LAN IP on port **8081**. The timeout means the **phone never reached that host:port** (common on school/office Wi‑Fi, guest networks, VPNs, or strict firewalls).
+
+1. Put **phone and computer on the same Wi‑Fi** (not guest isolation / “AP isolation”).
+2. On macOS, allow **Node** (or **Terminal/iTerm**) if the firewall prompts; or try **Turn off firewall** briefly to test.
+3. **Easiest fix:** use a tunnel so the phone does not need LAN access to your IP:
+   ```bash
+   cd apps/mobile && pnpm run start:tunnel
+   ```
+   Scan the **new** QR in Expo Go (URL will look like `exp://u.expo.dev/...`, not `192.168.x.x`).
+4. After your machine’s IP changes, restart with cache clear: `pnpm run start:clear`.
+
 **API URL (fixes “Network error” / guest login on devices)**
 
 Default is `http://localhost:3000` in `app.json`. On **native**, that URL is rewritten so the app does not talk to the phone’s own loopback:
@@ -55,8 +68,6 @@ Screening-only copy is enforced in UI (`MedicalDisclaimer`, results). Production
 
 From the repo root (with pnpm):
 
-
+```bash
 pnpm --filter web dev
-
-
-cd apps/api && npm run start:dev# healthscan
+```

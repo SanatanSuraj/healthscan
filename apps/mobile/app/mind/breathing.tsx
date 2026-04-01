@@ -19,6 +19,7 @@ import {
   mindTextNoSelectWeb,
 } from '@healthscan/ui';
 import { useMindCareProgressStore } from '@/lib/mindCareProgressStore';
+import { goBackOrReplace } from '@/lib/navigation';
 
 const PHASES = [
   { label: 'Breathe In', seconds: 4 },
@@ -109,7 +110,7 @@ export default function BreathingScreen() {
 
   const handleBack = () => {
     if (state.screen === 'intro') {
-      router.back();
+      goBackOrReplace('/mind');
       return;
     }
     dispatch({ type: 'to_intro' });

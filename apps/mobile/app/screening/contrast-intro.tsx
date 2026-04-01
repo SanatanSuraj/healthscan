@@ -7,6 +7,7 @@ import {
   EyeScreenHeader,
   EyeModuleIntroLayout,
 } from '@healthscan/ui';
+import { goBackOrReplace } from '@/lib/navigation';
 
 export default function ContrastIntro() {
   return (
@@ -16,7 +17,7 @@ export default function ContrastIntro() {
           <EyeScreenHeader
             title="Contrast Sensitivity"
             progress="4/6"
-            onBack={() => router.replace('/screening/color-test')}
+            onBack={() => goBackOrReplace('/screening/color-test')}
           />
         }
         icon={

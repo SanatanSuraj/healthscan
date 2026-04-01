@@ -9,6 +9,8 @@ export default function MindLayout() {
         headerShown: false,
         contentStyle: { backgroundColor: mindTheme.bgTop },
         animation: 'slide_from_right',
+        gestureEnabled: true,
+        fullScreenGestureEnabled: true,
       }}
     />
   );

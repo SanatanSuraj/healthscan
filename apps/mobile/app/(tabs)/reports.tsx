@@ -1,7 +1,8 @@
 import React, { useMemo } from 'react';
-import { View, Text, StyleSheet, ScrollView } from 'react-native';
+import { View, Text, StyleSheet, ScrollView, Platform } from 'react-native';
 import { useQuery } from '@tanstack/react-query';
 import { theme, TrendChart, type TrendPoint } from '@healthscan/ui';
+import { webScrollContent } from '@/lib/webLayout';
 import { useAuth } from '@/context/auth';
 
 export default function ReportsScreen() {
@@ -24,7 +25,14 @@ export default function ReportsScreen() {
   }, [q.data]);
 
   return (
-    <ScrollView style={styles.bg} contentContainerStyle={styles.wrap}>
+    <ScrollView
+      style={styles.bg}
+      contentContainerStyle={
+        Platform.OS === 'web'
+          ? webScrollContent.centeredColumn
+          : styles.wrap
+      }
+    >
       <Text style={styles.h}>Trends</Text>
       <Text style={styles.p}>Unified screening score — last ~30 days.</Text>
       <View style={styles.chartBox}>

@@ -16,6 +16,7 @@ import {
 } from '@healthscan/ui';
 import { NEAR_VISION_LINES } from '@/lib/eyeScreeningContent';
 import { useEyeScreeningStore } from '@/lib/eyeScreeningStore';
+import { goBackOrReplace } from '@/lib/navigation';
 
 const SIZES = [28, 24, 20, 17, 15, 13, 11];
 
@@ -27,7 +28,7 @@ export default function NearVisionChartScreen() {
       <EyeScreenHeader
         title="Near Vision"
         progress="2/6"
-        onBack={() => router.replace('/screening/near-intro')}
+        onBack={() => goBackOrReplace('/screening/near-intro')}
       />
       <Text style={styles.hint}>
         Tap the smallest line you can read clearly

@@ -1,13 +1,16 @@
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
-import { router } from 'expo-router';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { eyeTheme, EyeScreenHeader } from '@healthscan/ui';
+import { goBackOrReplace } from '@/lib/navigation';
 
 export default function DoctorDashboardPlaceholder() {
   return (
     <SafeAreaView style={styles.safe} edges={['top', 'bottom']}>
-      <EyeScreenHeader title="Doctor Dashboard" onBack={() => router.back()} />
+      <EyeScreenHeader
+        title="Doctor Dashboard"
+        onBack={() => goBackOrReplace('/screening/results')}
+      />
       <View style={styles.body}>
         <Text style={styles.p}>
           Specialist review queue, cohort exports, and device calibration audit

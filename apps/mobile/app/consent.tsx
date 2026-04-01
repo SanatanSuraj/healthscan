@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { View, Text, StyleSheet, ScrollView } from 'react-native';
 import { router } from 'expo-router';
 import { Button, theme, MedicalDisclaimer } from '@healthscan/ui';
+import { AppBackLink } from '@/components/AppBackLink';
 import { useAuth } from '@/context/auth';
 
 const VERSION = '2026-03-31';
@@ -27,6 +28,7 @@ export default function ConsentScreen() {
 
   return (
     <ScrollView contentContainerStyle={styles.wrap}>
+      <AppBackLink fallbackHref="/login" />
       <Text style={styles.h}>Informed consent</Text>
       <Text style={styles.p}>
         HealthScan collects self-reported and task-derived screening data to

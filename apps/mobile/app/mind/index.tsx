@@ -11,6 +11,7 @@ import { router } from 'expo-router';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import {
   mindTheme,
+  MindBackLink,
   MindHealthToolCard,
   MindAudioButton,
   MindSosDashCard,
@@ -18,6 +19,7 @@ import {
   mindTextNoSelectWeb,
 } from '@healthscan/ui';
 import { useMindCareProgressStore } from '@/lib/mindCareProgressStore';
+import { goBackOrReplace } from '@/lib/navigation';
 
 const statShadow = {
   shadowColor: '#000',
@@ -54,6 +56,7 @@ export default function MindCareDashboard() {
           showsVerticalScrollIndicator={false}
           keyboardShouldPersistTaps="handled"
         >
+          <MindBackLink onPress={() => goBackOrReplace('/(tabs)')} />
           <View style={styles.topRow}>
             <View style={styles.brand}>
               <Text style={styles.brainIco} accessibilityLabel="">
